@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna Vardhan Mettu - Software Engineer Portfolio</title>
+
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom Tailwind Configuration - Updated for Purple Theme */
+        :root {
+            --primary-accent: #5A1280; /* Deep Royal Purple */
+            --secondary-accent: #EEDDFF; /* Very light purple for highlight elements/tags */
+            --text-color: #1A202C; /* Deep Charcoal */
+            --bg-color: #F8F0FF; /* Very light purple tint for general background */
+            --light-bg: #EDE0F7; /* Slightly darker light purple for alternating sections */
+        }
+
+        /* Applying custom colors to Tailwind */
+        .bg-primaryAccent { background-color: var(--primary-accent); }
+        .text-primaryAccent { color: var(--primary-accent); }
+        .border-primaryAccent { border-color: var(--primary-accent); }
+        /* Adjusted hover color for the new purple */
+        .hover\:bg-primaryAccent:hover { background-color: #6A0DAD; }
+        .hover\:text-primaryAccent:hover { color: #6A0DAD; }
+
+        .bg-secondaryAccent { background-color: var(--secondary-accent); }
+
+        .bg-textColor { background-color: var(--text-color); }
+        .text-textColor { color: var(--text-color); }
+
+        .bg-bgColor { background-color: var(--bg-color); }
+        .text-bgColor { color: var(--bg-color); }
+
+        .bg-lightBg { background-color: var(--light-bg); }
+
+        /* Custom scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Ensure font-family applies */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color); /* Main purple tint background */
+            position: relative; /* Needed for pseudo-element positioning */
+            overflow-x: hidden; /* Prevent horizontal scroll from fixed elements */
+        }
+
+        /* Background image with light opacity */
+        body::before {
+            content: '';
+            position: fixed; /* Fixed so it doesn't scroll with content */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Updated Abstract tech background image */
+            background-image: url('https://images.stockcake.com/public/f/4/1/f4186de5-0819-45a9-a5b4-16f818bd93f7_large/united-team-hands-stockcake.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3; /* Light opacity for the image */
+            z-index: -1; /* Place behind all content */
+        }
+
+
+        /* Custom fade-in and slide-up animations for sections */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-fade-in-up {
+            animation: slideInUp 1s ease-out forwards;
+        }
+
+        /* Utility for initial hidden state before animation */
+        .initial-hidden {
+            opacity: 0;
+            transform: translateY(20px); /* For slide-in-up */
+        }
+        .initial-hidden.hero {
+            transform: translateY(0); /* Hero section does not slide up initially */
+        }
+
+        /* Adjustments for Lucide icons */
+        .lucide {
+            display: inline-block; /* Ensure icons behave like text */
+        }
+
+        @media (max-width: 1300px) {
+            /* Hide the timeline dots and lines on screens smaller than 1300px */
+            .timeline-line,
+            .timeline-dot {
+                display: none !important;
+            }
+        }
+
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 py-4 transition-all duration-300">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+            <a href="#hero" class="text-xl font-bold text-primaryAccent hover:text-blue-700 transition-colors">
+                Krishna's Portfolio
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#hero" class="text-textColor hover:text-primaryAccent transition-colors text-lg font-medium">Home</a>
+                <a href="#about" class="text-textColor hover:text-primaryAccent transition-colors text-lg font-medium">About</a>
+                <a href="#skills" class="text-textColor hover:text-primaryAccent transition-colors text-lg font-medium">Skills</a>
+                <a href="#projects" class="text-textColor hover:text-primaryAccent transition-colors text-lg font-medium">Projects</a>
+                <a href="#experience" class="text-textColor hover:text-primaryAccent transition-colors text-lg font-medium">Experience</a>
+                <a href="#education" class="text-textColor hover:text-primaryAccent transition-colors text-lg font-medium">Education</a>
+                <a href="#certifications" class="text-textColor hover:text-primaryAccent transition-colors text-lg font-medium">Certifications</a>
+                <a href="#publications" class="text-textColor hover:text-primaryAccent transition-colors text-lg font-medium">Publications</a>
+                <a href="#contact" class="text-textColor hover:text-primaryAccent transition-colors text-lg font-medium">Contact</a>
+                <div class="flex space-x-4 ml-4">
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-textColor hover:text-primaryAccent transition-colors">
+                        <i data-lucide="github" class="lucide"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/krishna-vardhan-mettu-34b0111a9/" target="_blank" rel="noopener noreferrer" class="text-textColor hover:text-primaryAccent transition-colors">
+                        <i data-lucide="linkedin" class="lucide"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-textColor focus:outline-none">
+                    <i data-lucide="menu" class="lucide-menu-icon lucide"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu-overlay" class="md:hidden fixed inset-0 bg-bgColor bg-opacity-95 z-40 flex-col items-center justify-center space-y-8 hidden">
+            <button id="close-mobile-menu-button" class="absolute top-4 right-4 text-textColor focus:outline-none">
+                <i data-lucide="x" class="lucide"></i>
+            </button>
+            <a href="#hero" class="text-textColor hover:text-primaryAccent transition-colors text-3xl font-semibold mobile-nav-link">Home</a>
+            <a href="#about" class="text-textColor hover:text-primaryAccent transition-colors text-3xl font-semibold mobile-nav-link">About</a>
+            <a href="#skills" class="text-textColor hover:text-primaryAccent transition-colors text-3xl font-semibold mobile-nav-link">Skills</a>
+            <a href="#projects" class="text-textColor hover:text-primaryAccent transition-colors text-3xl font-semibold mobile-nav-link">Projects</a>
+            <a href="#experience" class="text-textColor hover:text-primaryAccent transition-colors text-3xl font-semibold mobile-nav-link">Experience</a>
+            <a href="#education" class="text-textColor hover:text-primaryAccent transition-colors text-3xl font-semibold mobile-nav-link">Education</a>
+            <a href="#certifications" class="text-textColor hover:text-primaryAccent transition-colors text-3xl font-semibold mobile-nav-link">Certifications</a>
+            <a href="#publications" class="text-textColor hover:text-primaryAccent transition-colors text-3xl font-semibold mobile-nav-link">Publications</a>
+            <a href="#contact" class="text-textColor hover:text-primaryAccent transition-colors text-3xl font-semibold mobile-nav-link">Contact</a>
+            <div class="flex space-x-8 mt-8">
+                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-textColor hover:text-primaryAccent transition-colors">
+                    <i data-lucide="github" class="lucide" style="width: 32px; height: 32px;"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/krishna-vardhan-mettu-34b0111a9/" target="_blank" rel="noopener noreferrer" class="text-textColor hover:text-primaryAccent transition-colors">
+                    <i data-lucide="linkedin" class="lucide" style="width: 32px; height: 32px;"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 md:px-6">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4 pt-16 initial-hidden hero">
+            <div class="space-y-4">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-textColor leading-tight">
+                    Hi, I'm <span class="text-primaryAccent">Krishna Vardhan Mettu</span>
+                </h1>
+                <h2 class="text-2xl md:text-4xl text-textColor font-semibold h-12 md:h-16 flex justify-center items-center">
+                    Experienced Software Engineer | Innovator | Problem Solver
+                </h2>
+                <br>
+                <a
+                    href="#projects"
+                    class="inline-block mt-8 px-8 py-4 bg-primaryAccent text-white text-lg font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-105"
+                >
+                    View My Work
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-lightBg px-4 initial-hidden">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8 text-primaryAccent">About Me</h2>
+                <div class="flex flex-col md:flex-row items-center md:items-start md:space-x-8">
+                    <div class="flex-shrink-0 mb-6 md:mb-0">
+                        <img
+                            src="https://media.licdn.com/dms/image/v2/D5635AQEIWNgqRL8IwA/profile-framedphoto-shrink_400_400/B56ZVTam_wHEAc-/0/1740861239776?e=1750276800&v=beta&t=5FbB2s09REwWmxpoM8yN1UijYvYHt1AAZG0RSexWxH8"
+                            alt="Profile Photo"
+                            class="rounded-full w-40 h-40 object-cover shadow-lg"
+                            onerror="this.onerror=null;this.src='https://placehold.co/150x150/cccccc/000000?text=Profile';"
+                        >
+                    </div>
+                    <div class="text-lg leading-relaxed text-gray-700 text-left">
+                        <p class="mb-4">Experienced Software Engineer with 3+ years in application development, automation, testing, system design, and data structure optimization. Expertise from setting up environments to deploying and maintaining scalable, highly available solutions on cloud platforms. Skilled in real-time data processing, API development, and efficient coding with Python, C++, and SQL, focusing on performance and efficiency, and possessing a foundational understanding of AI capabilities, including Generative AI concepts, RAG and LLM integrations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 bg-bgColor px-4 initial-hidden">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-primaryAccent">Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <!-- Programming and Tools -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-semibold mb-6 text-textColor flex items-center">
+                            <i data-lucide="code" class="lucide mr-2"></i> Programming and Tools
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Python</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Bash</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">C++</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Java</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">JavaScript</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Nodejs</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Typescript</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">React</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">CSS</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">HTML</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Spring Boot</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Postman</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Docker</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Terraform</span>
+                        </div>
+                    </div>
+                    <!-- ML/AI and Data Science -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-semibold mb-6 text-textColor flex items-center">
+                            <i data-lucide="brain" class="lucide mr-2"></i> ML/AI and Data Science
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Scikit-learn</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Pandas</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">NumPy</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Matplotlib</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Generative AI (Gen AI)</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">LLM</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">RAG</span>
+                        </div>
+                    </div>
+                    <!-- Database / Operating Systems -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-semibold mb-6 text-textColor flex items-center">
+                            <i data-lucide="database" class="lucide mr-2"></i> Database / Operating Systems
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">FAISS</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">PostgreSQL</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">MongoDB</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">MySQL</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Linux</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Windows</span>
+                        </div>
+                    </div>
+                    <!-- Cloud Technologies / Protocols -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-semibold mb-6 text-textColor flex items-center">
+                            <i data-lucide="cloud" class="lucide mr-2"></i> Cloud Technologies / Protocols
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Amazon Web Services (AWS)</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">Google Cloud Platform (GCP)</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">MQTT</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">REST</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">FIX</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">HTTP</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">TCP/IP</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">UDP</span>
+                            <span class="px-4 py-2 bg-secondaryAccent text-textColor rounded-full text-md font-medium hover:bg-primaryAccent hover:text-white transition-colors duration-300 transform hover:scale-105 cursor-default">FTP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-lightBg px-4 initial-hidden">
+            <div class="max-w-6xl mx-auto">
+                <!-- Replaced heading text with image -->
+                <img
+                    src="https://placehold.co/300x80/5A1280/FFFFFF?text=My+Projects"
+                    alt="My Projects"
+                    class="mx-auto mb-12 w-auto h-20 object-contain"
+                    onerror="this.onerror=null;this.src='https://placehold.co/300x80/cccccc/000000?text=My+Projects';"
+                >
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- Project cards will be injected here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 bg-bgColor px-4 initial-hidden">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-primaryAccent">Experience</h2>
+                <!-- Container for the timeline and entries -->
+                <div class="relative">
+                    <!-- The vertical timeline line -->
+                    <div class="absolute left-6 md:left-8 top-0 bottom-0 w-1 bg-primaryAccent timeline-line"></div>
+
+                    <!-- Experience 1: Software Engineer, G-Think Inventors -->
+                    <div class="mb-10 last:mb-0 relative pl-12 md:pl-16">
+                        <!-- Timeline Dot -->
+                        <div class="absolute -left-10 md:-left-12 top-0 flex items-center justify-center w-8 h-8 bg-primaryAccent rounded-full text-white z-10 timeline-dot">
+                            <i data-lucide="briefcase" class="lucide" style="width:18px; height:18px;"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-textColor">Software Engineer</h3>
+                        <p class="text-lg text-gray-700 font-medium">G-Think Inventors | Hyderabad, India</p>
+                        <p class="text-md text-gray-500 mb-4">Oct '20 - July '23</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Developed and managed scalable RESTful APIs using Django (MVC architecture) with clean, reliable Python code, ensuring robust application services. Conducted API testing with Postman and generated comprehensive documentation for cross functional teams.</li>
+                            <li>Designed and managed enterprise web page on AWS (EC2, S3), integrating robust solutions into CI/CD pipelines to guarantee high availability and secure deployments for web page.</li>
+                            <li>Led the Energy Usage project, a Python based analysis tool for continuous data collection from appliances. This involved storing, processing, and generating visualized reports that detailed individual appliance electricity consumption for end users. This helped users to reduce 20% of the electricity bill.</li>
+                            <li>Collaborated with hardware and data engineering teams to establish reliable IoT device to cloud communication via JSON over RESTful APIs to PostgreSQL databases. Automated diagnostics and alerting using Python, Bash scripts, and AWS CloudWatch, which reduced incident response time and support tickets by 55%.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Experience 2: Software Engineer Intern, G-Think Inventors -->
+                    <div class="mb-10 last:mb-0 relative pl-12 md:pl-16">
+                        <div class="absolute -left-10 md:-left-12 top-0 flex items-center justify-center w-8 h-8 bg-primaryAccent rounded-full text-white z-10 timeline-dot">
+                            <i data-lucide="briefcase" class="lucide" style="width:18px; height:18px;"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-textColor">Software Engineer Intern</h3>
+                        <p class="text-lg text-gray-700 font-medium">G-Think Inventors | Hyderabad, India</p>
+                        <p class="text-md text-gray-500 mb-4">June '19 - Oct '19</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Engineered automated reporting system during my internship to provide households with insights into appliance energy usage, facilitating informed decisions for efficient electricity consumption.</li>
+                            <li>Designed efficient data storage structures to facilitate smooth processing and utilized Python libraries (NumPy, Pandas) for cleaning and preprocessing sensor data, ensuring reliable and accurate analytical results.</li>
+                            <li>Developed an automated reporting tool using Matplotlib and Bash scripts, scheduled via Cron job, to auto generate monthly energy usage reports for over 500 households and 8,000+ appliances, significantly enabling proactive energy savings.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 bg-lightBg px-4 initial-hidden">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-primaryAccent">Education</h2>
+                <div class="relative">
+                    <!-- The vertical timeline line for education -->
+                    <div class="absolute left-6 md:left-8 top-0 bottom-0 w-1 bg-primaryAccent timeline-line"></div>
+
+                    <!-- Education Entry 1: Masters -->
+                    <div class="mb-10 last:mb-0 relative pl-12 md:pl-16">
+                        <div class="absolute -left-10 md:-left-12 top-0 flex items-center justify-center w-8 h-8 bg-primaryAccent rounded-full text-white z-10 timeline-dot">
+                            <i data-lucide="graduation-cap" class="lucide" style="width:18px; height:18px;"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-textColor">Masters in Big Data Analytics</h3>
+                        <p class="text-lg text-gray-700 font-medium">University of Central Missouri, Missouri, United States</p>
+                        <p class="text-md text-gray-500 mb-4">Aug '23 - May '25</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>GPA: 3.4/4.0</li>
+                            <li>Relevant Coursework: Machine Learning & Deep Learning, Big Data Architecture, Data Analytics, Business Intelligence, Data Resource Management, Project Management</li>
+                        </ul>
+                    </div>
+
+                    <!-- Education Entry 2: Bachelors -->
+                    <div class="mb-10 last:mb-0 relative pl-12 md:pl-16">
+                        <div class="absolute -left-10 md:-left-12 top-0 flex items-center justify-center w-8 h-8 bg-primaryAccent rounded-full text-white z-10 timeline-dot">
+                            <i data-lucide="graduation-cap" class="lucide" style="width:18px; height:18px;"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-textColor">Bachelors in Computer Science and Engineering</h3>
+                        <p class="text-lg text-gray-700 font-medium">Sreyas Institute of Engineering and technology, Hyderabad, India</p>
+                        <p class="text-md text-gray-500 mb-4">July '16 - Sept '20</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                             <li>GPA: 8.0/10</li>
+                             <li>Relevant Coursework: Distributed Systems, Operating Systems, Networking Fundamentals, Database Management, Virtualization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-20 bg-bgColor px-4 initial-hidden">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-primaryAccent">Certifications</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Certification 1: Associate Cloud Engineer -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex items-start space-x-4">
+                        <i data-lucide="award" class="lucide text-primaryAccent mt-1 flex-shrink-0" style="width:24px; height:24px;"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-textColor">Associate Cloud Engineer</h3>
+                            <p class="text-lg text-gray-700">Google Cloud Certification</p>
+                            <p class="text-md text-gray-500">Issued: June '25</p>
+                        </div>
+                    </div>
+                    <!-- Certification 2: Cisco Certified Network Associate -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex items-start space-x-4">
+                        <i data-lucide="award" class="lucide text-primaryAccent mt-1 flex-shrink-0" style="width:24px; height:24px;"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-textColor">Cisco Certified Network Associate - Routing and Switching: Introduction to Networks</h3>
+                            <p class="text-lg text-gray-700">Cisco</p>
+                            <p class="text-md text-gray-500">Issued: June '18</p>
+                        </div>
+                    </div>
+                     <!-- Certification 3: Python Programming -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex items-start space-x-4">
+                        <i data-lucide="award" class="lucide text-primaryAccent mt-1 flex-shrink-0" style="width:24px; height:24px;"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-textColor">Python Programming</h3>
+                            <p class="text-lg text-gray-700">Tvashtaa Data Solutions</p>
+                            <p class="text-md text-gray-500">Issued: Sept '17</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="py-20 bg-lightBg px-4 initial-hidden">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-primaryAccent">Publications</h2>
+                <div class="space-y-8">
+                    <!-- Publication 1: NavRobotVac -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex items-start space-x-4">
+                        <i data-lucide="book-open" class="lucide text-primaryAccent mt-1 flex-shrink-0" style="width:24px; height:24px;"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-textColor">"NavRobotVac: A Navigational Robotic Vacuum Cleaner Using Raspberry Pi and Python"</h3>
+                            <p class="text-lg text-gray-700">Vardhan M.K., Nabi S.A. (2021) Springer</p>
+                            <p class="text-md text-gray-500">Published: Oct '20</p>
+                            <a href="https://link.springer.com/chapter/10.1007/978-981-16-1502-3_17" target="_blank" rel="noopener noreferrer" class="text-primaryAccent hover:underline text-sm mt-2 inline-block">
+                                View Publication <i data-lucide="external-link" class="lucide ml-1 inline-block" style="width:16px; height:16px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-bgColor px-4 initial-hidden">
+            <div class="max-w-xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8 text-primaryAccent">Get In Touch</h2>
+                <p class="text-lg text-gray-700 mb-10">
+                    Have a project in mind, a question, or just want to say hi? Feel free to reach out!
+                </p>
+
+                <div class="mt-12 space-y-4">
+                    <p class="text-lg text-gray-700">You can also find me here:</p>
+                    <div class="mt-12 space-y-4 flex flex-col md:flex-row md:space-x-6 md:space-y-0 justify-center items-center">
+                        <a href="mailto:krishnavardhan11@gmail.com" class="flex items-center text-primaryAccent hover:text-blue-700 transition-colors text-lg">
+                            <i data-lucide="mail" class="lucide mr-2" style="width:24px; height:24px;"></i> krishnavardhan11@gmail.com
+                        </a>
+                        <a href="https://www.linkedin.com/in/krishna-vardhan-mettu-34b0111a9/" target="_blank" rel="noopener noreferrer" class="flex items-center text-primaryAccent hover:text-blue-700 transition-colors text-lg">
+                            <i data-lucide="linkedin" class="lucide" style="width:32px; height:32px;"></i> LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-textColor py-8 text-center text-white text-sm">
+        <div class="container mx-auto px-4">
+            <p> <span id="current-year"></span> Krishna Vardhan Mettu.</p>
+            
+        </div>
+    </footer>
+
+    <!-- Custom Message Box -->
+    <div id="message-box" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[9999] hidden">
+        <div class="bg-white p-8 rounded-lg shadow-xl text-center max-w-sm w-full">
+            <p id="message-box-text" class="text-xl font-semibold mb-6 text-textColor"></p>
+            <button id="message-box-close" class="px-6 py-2 bg-primaryAccent text-white rounded-md hover:bg-blue-700 transition-colors">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Project Data
+        const projectsData = [
+            {
+                title: "Financial Research Tool LLM",
+                description: [
+                    "Developed LLM integrated web application using RAG model including Python, Lang Chain, OpenAI and Streamlit.",
+                    "This tool helps in doing easy research by getting a required answer from the given web articles (HTML).",
+                    "The articles and questions are converted into chunks and embedded with numerical representation to store in the FAISS (vector database).",
+                    "Identified relevant chunks from the articles to answer the questions and processed with LLM.",
+                    "This optimized the cost efficiency with using OpenAI Large Language Model (LLM) APIs.",
+                    "Containerized the application using Docker and hosted on Google Cloud Platform (GCP)."
+                ],
+                technologies: ["Python", "Gen AI", "RAG", "Lang Chain", "OpenAI", "Streamlit", "FAISS", "Docker", "GCP"],
+                liveLink: "#", // Placeholder as no live link provided
+                githubLink: "#", // Placeholder as no github link provided
+               // liveLink: "https://example.com/cloud-dashboard",
+                githubLink: "https://github.com/yourusername/cloud-dashboard",
+                image: "https://placehold.co/400x250/5A1280/FFFFFF?text=Financial+Research+Tool",
+                
+            },
+            {
+                title: "Deep Learning-based Restaurant & Menu Item Generator",
+                description: [
+                    "Developed a Python-based text generation model capable of generating unique restaurant names and diverse menu items.",
+                    "Implemented character-level text generation using Deep Learning techniques.",
+                    "Leveraged Keras and TensorFlow frameworks for model architecture, training, and inference.",
+                    "Trained the generative model on a custom dataset of existing restaurant names and menu items to learn linguistic patterns.",
+                    "Showcased understanding of neural networks and sequential data processing for creative text output.",
+                    "Applied skills in data preprocessing, model training, and text-based generative AI applications.",
+                ],
+                technologies: ["Python", "TensorFlow", "Keras", "Deep Learning", "Character-level Text Generation", "LSTMs"],
+                liveLink: "#",
+                githubLink: "#",
+                image: "https://placehold.co/400x250/5A1280/FFFFFF?text=Restaurant Name Generator",
+                //liveLink: "https://example.com/cloud-dashboard",
+                githubLink: "https://github.com/yourusername/cloud-dashboard",
+            },
+            {
+                title: "House Affordability and Price Prediction",
+                description: [
+                    "Developed a data-driven analytics platform leveraging Zillow's public data to analyze real estate trends and predict housing prices.",
+                    "It features tools for market forecasting, rent vs. buy affordability assessment, and predictive modeling using Power BI, Flask, and Scikit-learn.",
+                    "Data is stored in a MySQL database, with functionality for sellers to post properties and manage applications, and for buyers to browse listings and apply directly through the platform."
+                ],
+                technologies: ["Python", "MySQL", "Power BI", "Flask", "Scikit-learn"],
+                liveLink: "#", // Placeholder
+                githubLink: "#", // Placeholder
+                image: "https://placehold.co/400x250/5A1280/FFFFFF?text=House+Affordability+Prediction",
+                //liveLink: "https://example.com/cloud-dashboard",
+                githubLink: "https://github.com/yourusername/cloud-dashboard",
+            },
+            {
+                title: "Remote Monitoring and Control System",
+                description: [
+                    "Worked on IoT car controlled with Android applications using C++ and Java with live video streaming within the network.",
+                    "Used MQTT protocol to transfer moving commands from application to Arduino robot car and HTTP protocol to transfer live video streaming from robot car to application."
+                ],
+                technologies: ["Java", "C++", "IoT", "MQTT", "HTTP"],
+                liveLink: "#", // Placeholder
+                githubLink: "#", // Placeholder
+                image: "https://placehold.co/400x250/5A1280/FFFFFF?text=Remote+Monitoring+IoT",
+                liveLink: "https://www.linkedin.com/posts/krishna-vardhan-mettu-34b0111a9_iot-programming-java-activity-7322020536887189504-g87q?utm_source=share&utm_medium=member_desktop&rcm=ACoAADCW6asBuFtG6dFrJelQAnb7Ccpkc8sbNYc",
+                githubLink: "https://github.com/yourusername/cloud-dashboard",
+            },
+            // --- New Dummy Projects ---
+            {
+                title: "Self-Navigating Robotic Vacuum Cleaner",
+                description: [
+                    "Designed and developed a self-navigating robotic vacuum cleaner using Python on a Raspberry Pi platform.",
+                    "Integrated IoT sensors to enable real-time environmental scanning and responsive cleaning actions.",
+                    "Achieved significant improvements in both cost effectiveness and operational efficiency compared to conventional models."
+                ],
+                technologies: ["IoT", " Raspberry Pi", "Python", "Networking", "SSH", "Numpy", "Pandas", "Linux"],
+                liveLink: "#",
+                githubLink: "#",
+                image: "https://placehold.co/400x250/5A1280/FFFFFF?text=Robotic Vacuum Cleaner",
+                liveLink: "https://www.linkedin.com/posts/krishna-vardhan-mettu-34b0111a9_iot-raspberrypi-automation-activity-7332164920865693696-Kdlh?utm_source=share&utm_medium=member_desktop&rcm=ACoAADCW6asBuFtG6dFrJelQAnb7Ccpkc8sbNYc",
+                //githubLink: "https://github.com/yourusername/cloud-dashboard",
+            },
+            {
+                title: "Ambient Lighting",
+                description: [
+                    "Developed an Ambilight system that synchronized LED lights with screen content, enabling individual pixel segments to glow dynamically.",
+                    "Engineered the system using Python and Raspberry Pi for efficient pixel data acquisition and processing.",
+                    "Implemented multithreading to optimize pixel processing time, significantly enhancing lighting responsiveness and smoothness."
+                ],
+                technologies: ["Python", "OpenCV", "Raspberry Pi", "Multithreading"],
+                liveLink: "#",
+                githubLink: "#",
+                image: "https://placehold.co/400x250/5A1280/FFFFFF?text=Ambient Lighting",
+                liveLink: "https://www.linkedin.com/posts/krishna-vardhan-mettu-34b0111a9_ambientlighting-pythonprojects-raspberrypi-activity-7322614050402488320-bXVL?utm_source=share&utm_medium=member_desktop&rcm=ACoAADCW6asBuFtG6dFrJelQAnb7Ccpkc8sbNYc",
+                //githubLink: "https://github.com/yourusername/cloud-dashboard",
+            },
+            {
+                title: "Trading Signal System",
+                description: [
+                    "Developed a Trading Signal System using python for real-time stock data processing and trend prediction",
+                    "Utilized Beautifulsoup to perform web scraping for acquiring essential market data.",
+                    "Leveraged Pandas and NumPy for efficient real-time stock data processing and numerical analysis.",
+                    "Implemented Scikit-learn models for robust trend prediction and comprehensive technical analysis.",
+                    "Integrated advanced trading strategies, including Moving Averages and candlestick pattern recognition, to generate real-time trading alerts.",
+                    "Deployed the system using AWS Lambda for scalable, serverless, and highly efficient automated trading signal system.",
+                ],
+                technologies: ["Beautifulsoup", "Python", "Pandas", "Numpy", "Sciket-learn", "AWS Lambda"],
+                liveLink: "#",
+                githubLink: "#",
+                image: "https://placehold.co/400x250/5A1280/FFFFFF?text=Trading Signal System",
+                //liveLink: "https://example.com/cloud-dashboard",
+                //githubLink: "https://github.com/yourusername/cloud-dashboard",
+            },
+            
+        ];
+
+        // Function to render projects into the grid
+        function renderProjectsGrid() {
+            const projectsGrid = document.getElementById('projects-grid');
+            projectsGrid.innerHTML = ''; // Clear previous content
+
+            projectsData.forEach((project) => {
+                const projectCard = document.createElement('div');
+                projectCard.className = `bg-white p-6 rounded-lg shadow-md overflow-hidden
+                                         hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300`;
+
+                // Create the HTML for the project card
+                projectCard.innerHTML = `
+                    <img
+                        src="${project.image}"
+                        alt="${project.title}"
+                        class="w-full h-52 object-cover rounded-md mb-4"
+                        onerror="this.onerror=null;this.src='https://placehold.co/400x250/cccccc/000000?text=Project+Image';"
+                    >
+                    <h3 class="text-2xl font-semibold text-textColor mb-3">${project.title}</h3>
+                    <ul class="list-disc list-inside text-gray-700 text-md mb-4 space-y-1">
+                        ${project.description.map(point => `<li>${point}</li>`).join('')}
+                    </ul>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        ${project.technologies.map(tech => `
+                            <span class="px-3 py-1 bg-secondaryAccent text-textColor text-sm rounded-full">${tech}</span>
+                        `).join('')}
+                    </div>
+                    <div class="flex justify-start space-x-4">
+                        ${project.liveLink && project.liveLink !== '#' ? `
+                            <a
+                                href="${project.liveLink}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center px-4 py-2 bg-primaryAccent text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"
+                            >
+                                <i data-lucide="link" class="lucide mr-2" style="width:18px; height:18px;"></i> Demo
+                            </a>
+                        ` : ''}
+                        ${project.githubLink && project.githubLink !== '#' ? `
+                            <a
+                                href="${project.githubLink}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center px-4 py-2 border border-primaryAccent text-primaryAccent rounded-md hover:bg-primaryAccent hover:text-white transition-colors text-sm font-medium"
+                            >
+                                <i data-lucide="github" class="lucide mr-2" style="width:18px; height:18px;"></i> GitHub
+                            </a>
+                        ` : ''}
+                    </div>
+                `;
+                projectsGrid.appendChild(projectCard);
+            });
+
+            lucide.createIcons(); // Re-render Lucide icons for new elements
+        }
+
+        // Function to show custom message box
+        function showMessageBox(message) {
+            const messageBox = document.getElementById('message-box');
+            const messageBoxText = document.getElementById('message-box-text');
+            const messageBoxClose = document.getElementById('message-box-close');
+
+            messageBoxText.textContent = message;
+            messageBox.classList.remove('hidden');
+
+            messageBoxClose.onclick = () => {
+                messageBox.classList.add('hidden');
+            };
+
+            // Close on outside click
+            messageBox.onclick = (e) => {
+                if (e.target === messageBox) {
+                    messageBox.classList.add('hidden');
+                }
+            };
+        }
+
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            lucide.createIcons(); // Initialize Lucide icons
+
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-bgColor', 'shadow-md');
+                } else {
+                    navbar.classList.remove('bg-bgColor', 'shadow-md');
+                }
+            });
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMobileMenuButton = document.getElementById('close-mobile-menu-button');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenuOverlay.classList.remove('hidden');
+                mobileMenuOverlay.classList.add('flex');
+            });
+
+            closeMobileMenuButton.addEventListener('click', () => {
+                mobileMenuOverlay.classList.remove('flex');
+                mobileMenuOverlay.classList.add('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuOverlay.classList.remove('flex');
+                    mobileMenuOverlay.classList.add('hidden');
+                });
+            });
+
+            // Section scroll animations using Intersection Observer
+            const sections = document.querySelectorAll('section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.id === 'hero') {
+                            entry.target.classList.remove('initial-hidden');
+                            entry.target.classList.add('animate-fade-in');
+                        } else {
+                            entry.target.classList.remove('initial-hidden');
+                            entry.target.classList.add('animate-fade-in-up');
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                section.classList.add('initial-hidden');
+                sectionObserver.observe(section);
+            });
+
+            // Projects Grid Logic
+            renderProjectsGrid(); // Render all project cards into the grid
+
+            // Contact form submission handling
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const name = this.name.value;
+                    const email = this.email.value;
+                    const message = this.message.value;
+
+                    console.log('Form Submitted!');
+                    console.log('Name:', name);
+                    console.log('Email:', email);
+                    console.log('Message:', message);
+
+                    showMessageBox('Thank you for your message! (This is a simulated submission)');
+
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
