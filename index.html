@@ -110,6 +110,29 @@
             .timeline-dot {
                 display: none !important;
             }
+
+        /* NVIDIA Badge Popup Styles */
+        .nvidia-badge-img {
+            transition: box-shadow 0.3s, transform 0.3s, filter 0.3s;
+        }
+        .nvidia-badge-img:hover {
+            z-index: 1000;
+            box-shadow: 0 8px 32px 8px rgba(106, 13, 173, 0.25), 0 2px 8px 2px rgba(0,0,0,0.18);
+            transform: scale(1.25);
+            filter: brightness(1.1) drop-shadow(0 0 16px #6A0DAD55);
+            cursor: pointer;
+        }
+        .nvidia-badge-img:active {
+            transform: scale(1.18);
+        }
+        .nvidia-badge-img {
+            cursor: pointer;
+        }
+        /* Match cursor to GitHub button in projects */
+        .github-btn-cursor,
+        .nvidia-badge-img:hover {
+            cursor: pointer;
+        }
         }
 
     </style>
@@ -192,10 +215,12 @@
                 <div class="flex-shrink-0 mb-6 md:mb-0">
                         <img
                             src="Nvidia.png"
-                            alt="Profile Photo"
-                            class="rounded-full w-40 h-40"
-                            onerror="this.onerror=;this.src='https://placehold.co/150x150/cccccc/000000?text=Profile';"
+                            alt="NVIDIA Badge"
+                            class="rounded-full hover:scale-105 w-40 h-40 nvidia-badge-img transition-all duration-300 cursor-pointer"
+                            onerror="this.onerror=null;this.src='https://placehold.co/150x150/cccccc/000000?text=Profile';"
+                            onclick='window.open("https://www.credly.com/badges/77a035ae-afcc-4d32-bb21-b3248a33c39f","_blank")'
                         >
+        
                     </div></center>
             </div>
         </section>
@@ -495,6 +520,14 @@
     </div>
 
     <script>
+        // Add class to all GitHub buttons for cursor consistency
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.querySelectorAll('.projects-grid a[href*="github"], .projects-grid a[rel~="noopener"][href*="github"]').forEach(function(btn) {
+                    btn.classList.add('github-btn-cursor');
+                });
+            }, 100);
+        });
         // Project Data
         const projectsData = [
             {
